@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +11,7 @@ namespace MI138_GroupProject.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.CurrentUser = Session["User"];
             return View();
         }
 

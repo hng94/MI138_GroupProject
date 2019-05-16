@@ -79,7 +79,12 @@ namespace MI138_GroupProject.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    {
+                        var userId = SignInManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId();
+                        var currentUser = UserManager.FindById(userId);
+                        Session["User"] = currentUser;
+                        return RedirectToLocal(returnUrl);
+                    }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
