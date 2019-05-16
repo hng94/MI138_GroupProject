@@ -55,6 +55,9 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http.Owin, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.7\lib\net45\System.Web.Http.Owin.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -174,6 +177,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="APIs\GameController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -199,11 +203,20 @@
     <Compile Include="Migrations\201905152211426_UpdateModels1.Designer.cs">
       <DependentUpon>201905152211426_UpdateModels1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905161445384_updatetags.cs" />
+    <Compile Include="Migrations\201905161445384_updatetags.Designer.cs">
+      <DependentUpon>201905161445384_updatetags.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905161457536_updatemodel.cs" />
+    <Compile Include="Migrations\201905161457536_updatemodel.Designer.cs">
+      <DependentUpon>201905161457536_updatemodel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="DAL\IdentityModels.cs" />
+    <Compile Include="Models\GameVM.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Review.cs" />
     <Compile Include="Models\Tag.cs" />
@@ -297,6 +310,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905152211426_UpdateModels1.resx">
       <DependentUpon>201905152211426_UpdateModels1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905161445384_updatetags.resx">
+      <DependentUpon>201905161445384_updatetags.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905161457536_updatemodel.resx">
+      <DependentUpon>201905161457536_updatemodel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

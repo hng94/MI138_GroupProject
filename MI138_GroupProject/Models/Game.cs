@@ -11,11 +11,11 @@ namespace MI138_GroupProject.Models
         public int ID { get; set; }
         public string Name { get; set; }
         public string ScreenshotUrl { get; set; }
-        public List<Tag> Tags { get; set; }
+        public string Tags { get; set; }
         public DateTime Created { get; set; }
         public ApplicationUser CreatedBy { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
-        public bool Published { get; set; }
+        public bool Published { get; set; } = false;
     }
 
     //public class GameDbContext: DbContext
