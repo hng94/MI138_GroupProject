@@ -10,6 +10,7 @@ namespace MI138_GroupProject.Controllers
     public class HomeController : Controller
     {
         public ActionResult Index()
+
         {
             ViewBag.CurrentUser = Session["User"];
             return View();
