@@ -4,39 +4,78 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
 <div>
-    <h4>Game</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ScreenshotUrl)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ScreenshotUrl)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Created)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Created)
-        </dd>
-
-    </dl>
+    <p>
+        @*@Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |*@
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+    <h1>@Html.DisplayFor(model => model.Name)</h1>
+    <div class="row">
+        <div class="col-md-8">
+            <img class="card-img-top" src="@Html.DisplayFor(model => model.ScreenshotUrl)" alt="Card image cap">
+        </div>
+        <div class="col-md-4">
+            <b>Created date</b>
+            <p>@Html.DisplayFor(model => model.Created)</p>
+            <b>Created by</b>
+            <p>@Html.DisplayFor(model => model.CreatedBy.Email)</p>
+            <b>Reviews</b>
+            <button class="btn btn-success" type="button">
+                Possive <span class="badge">4</span>
+            </button>
+            <button class="btn btn-danger" type="button">
+                Negative <span class="badge">4</span>
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <a href="@Url.Action("CreateReview", "Games")" class="btn btn-primary" role="button">Write review</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h4>List of reviews</h4>
+            @foreach (var review in Model.Reviews)
+            {
+                <div class="panel panel-default">
+                    <div class="panel-heading">@Html.DisplayFor(modelItem => review.CreatedBy.Email)</div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(modelItem => review.Content)
+                    </div>
+                    <div class="panel-footer">
+                        @Html.DisplayFor(modelItem => review.Created)
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $("#submit_new_review").on("click", function (e) {
+                e.preventDefault();
+                var content = $("#new_review").val();
+                var positive = $("input[type='radio'][name='review_opinion']:checked").val() == "positive";
+                var gameID = @Html.DisplayFor(model => model.ID);
+                debugger
+                var reviewVM = {
+                    gameID,
+                    content,
+                    positive
+                }
+                $.ajax({
+                    url: "/api/games/createreview",
+                    data: JSON.stringify(reviewVM),
+                    method: "POST",
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json'
+                }).done(function () {
+                    document.location.reload(true);
+                })
+            })
+        })
+    </script>
+}

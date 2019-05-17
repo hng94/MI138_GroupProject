@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MI138_GroupProject.Models;
+using Microsoft.AspNet.Identity;
 
 namespace MI138_GroupProject.Controllers
 {
@@ -18,6 +19,7 @@ namespace MI138_GroupProject.Controllers
         // GET: Games
         public ActionResult Index()
         {
+            Session["CurrentGame"] = null;
             if (User.IsInRole("Admin"))
             {
                 return View("IndexAdmin", db.Games.ToList());
@@ -32,20 +34,48 @@ namespace MI138_GroupProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Game game = db.Games.Find(id);
+            Game game = db.Games.Include("Reviews.CreatedBy").Where(g => g.ID == id).FirstOrDefault();
             if (game == null)
             {
                 return HttpNotFound();
             }
+            Session["CurrentGame"] = game;
             return View(game);
         }
+
+        public ActionResult CreateReview()
+        {
+            ViewBag.CurrentGame = Session["CurrentGame"];
+            return View();
+        }
+
 
         // GET: Games/Create
         public ActionResult Create()
         {
             return View();
         }
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateReview(Review vm)
+        {
+            ViewBag.CurrentGame = Session["CurrentGame"];
+            var currentGame = (Game) Session["CurrentGame"];
+            var game = db.Games.FirstOrDefault(g => g.ID == (int) currentGame.ID);
+            if (game != null)
+            {
+                string userId = User.Identity.GetUserId();
+                Review review = new Review();
+                review.Content = vm.Content;
+                review.CreatedBy = db.Users.FirstOrDefault(u => u.Id == userId);
+                review.Created = DateTime.Now;
+                db.Reviews.Add(review);
+                //db.SaveChanges();
+                game.Reviews.Add(review);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Details", Session["CurrentGameID"]);
+        }
         // POST: Games/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.

@@ -11,6 +11,8 @@ namespace MI138_GroupProject.Models
         public int ID { get; set; }
         public string Content { get; set; }
         public DateTime Created { get; set; }
+        public bool Positive { get; set; } = false;
+
         public ApplicationUser CreatedBy { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
     }

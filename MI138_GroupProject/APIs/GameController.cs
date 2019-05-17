@@ -11,6 +11,7 @@ using System.Web.Http;
 
 namespace MI138_GroupProject.APIs
 {
+    [RoutePrefix("api/games")]
     public class GameController : ApiController
     {
         private ApplicationSignInManager _signInManager;
@@ -55,9 +56,31 @@ namespace MI138_GroupProject.APIs
         {
             return new string[] { "value1", "value2" };
         }
-        //[HttpPost]
-        //[Route("game/creategame")]
-        public HttpResponseMessage Post(GameVM vm)
+
+        [Route("createreview")]
+        [HttpPost]
+        public IHttpActionResult CreateReview([FromBody] ReviewVM vm)
+        {
+            var game = db.Games.FirstOrDefault(g => g.ID == vm.GameID);
+            if (game != null)
+            {
+                string userId = User.Identity.GetUserId();
+                Review review = new Review();
+                review.Content = vm.Content;
+                review.CreatedBy = db.Users.FirstOrDefault(u => u.Id == userId);
+                review.Created = DateTime.Now;
+                db.Reviews.Add(review);
+                //db.SaveChanges();
+                game.Reviews.Add(review);
+                db.SaveChanges();
+                return Ok();
+            }
+            return NotFound();
+        }
+
+        [Route("creategame")]
+        [HttpPost]
+        public IHttpActionResult CreateGame([FromBody] GameVM vm)
         {
             string email = vm.CreatorEmail;
             string password = vm.CreatorPassword;
@@ -75,9 +98,9 @@ namespace MI138_GroupProject.APIs
 
                 db.Games.Add(newGame);
                 db.SaveChanges();
-                return Request.CreateResponse(HttpStatusCode.OK, newGame.ID);
+                return Ok();
             }
-            return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Not found");
+            return NotFound();
         }
         // GET api/<controller>/5
         public string Get(int id)
