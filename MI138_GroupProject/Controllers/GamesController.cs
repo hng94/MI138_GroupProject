@@ -18,6 +18,10 @@ namespace MI138_GroupProject.Controllers
         // GET: Games
         public ActionResult Index()
         {
+            if (User.IsInRole("Admin"))
+            {
+                return View("IndexAdmin", db.Games.ToList());
+            }
             return View(db.Games.ToList());
         }
 

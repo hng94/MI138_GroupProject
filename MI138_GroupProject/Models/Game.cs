@@ -13,7 +13,7 @@ namespace MI138_GroupProject.Models
         public string ScreenshotUrl { get; set; }
         public string Tags { get; set; }
         public DateTime Created { get; set; }
-        public ApplicationUser CreatedBy { get; set; }
+        public virtual ApplicationUser CreatedBy { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
         public bool Published { get; set; } = false;
     }

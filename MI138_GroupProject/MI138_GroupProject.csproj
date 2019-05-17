@@ -211,6 +211,26 @@
     <Compile Include="Migrations\201905161457536_updatemodel.Designer.cs">
       <DependentUpon>201905161457536_updatemodel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905161504109_updatemodel1.cs" />
+    <Compile Include="Migrations\201905161504109_updatemodel1.Designer.cs">
+      <DependentUpon>201905161504109_updatemodel1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905162310513_SeedRoles.cs" />
+    <Compile Include="Migrations\201905162310513_SeedRoles.Designer.cs">
+      <DependentUpon>201905162310513_SeedRoles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905162317405_SeedRoles1.cs" />
+    <Compile Include="Migrations\201905162317405_SeedRoles1.Designer.cs">
+      <DependentUpon>201905162317405_SeedRoles1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905162321181_SeedRoles2.cs" />
+    <Compile Include="Migrations\201905162321181_SeedRoles2.Designer.cs">
+      <DependentUpon>201905162321181_SeedRoles2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905162329311_SeedRoles3.cs" />
+    <Compile Include="Migrations\201905162329311_SeedRoles3.Designer.cs">
+      <DependentUpon>201905162329311_SeedRoles3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -284,6 +304,7 @@
     <Content Include="Views\Games\Details.cshtml" />
     <Content Include="Views\Games\Edit.cshtml" />
     <Content Include="Views\Games\Index.cshtml" />
+    <Content Include="Views\Games\IndexAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -316,6 +337,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905161457536_updatemodel.resx">
       <DependentUpon>201905161457536_updatemodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905161504109_updatemodel1.resx">
+      <DependentUpon>201905161504109_updatemodel1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905162310513_SeedRoles.resx">
+      <DependentUpon>201905162310513_SeedRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905162317405_SeedRoles1.resx">
+      <DependentUpon>201905162317405_SeedRoles1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905162321181_SeedRoles2.resx">
+      <DependentUpon>201905162321181_SeedRoles2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905162329311_SeedRoles3.resx">
+      <DependentUpon>201905162329311_SeedRoles3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

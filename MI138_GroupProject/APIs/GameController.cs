@@ -66,8 +66,8 @@ namespace MI138_GroupProject.APIs
             if (user != null && passwordHasher.VerifyHashedPassword(user.PasswordHash, password) == PasswordVerificationResult.Success)
             {
                 Game newGame = new Game();
-                newGame.Created = DateTime.Today;
-                newGame.CreatedBy = user;
+                newGame.Created = DateTime.Now;
+                newGame.CreatedBy = db.Users.Where(u => u.Email == email).FirstOrDefault();
                 newGame.Name = vm.Name;
                 newGame.ScreenshotUrl = vm.ScreenshotUrl;
                 string tags = String.Join(";", vm.Tags.ToArray<string>());
