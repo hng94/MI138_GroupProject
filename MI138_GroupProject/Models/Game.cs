@@ -16,6 +16,7 @@ namespace MI138_GroupProject.Models
         public virtual ApplicationUser CreatedBy { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
         public bool Published { get; set; } = false;
+        public bool Deleted { get; set; } = false;
     }
 
     //public class GameDbContext: DbContext

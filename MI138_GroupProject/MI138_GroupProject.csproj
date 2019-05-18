@@ -238,6 +238,10 @@
     <Compile Include="Migrations\201905171509138_addPositiveProp.Designer.cs">
       <DependentUpon>201905171509138_addPositiveProp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905181315434_SoftDelete.cs" />
+    <Compile Include="Migrations\201905181315434_SoftDelete.Designer.cs">
+      <DependentUpon>201905181315434_SoftDelete.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -355,6 +359,7 @@
     <Content Include="Views\Review\Edit.cshtml" />
     <Content Include="Views\Review\Index.cshtml" />
     <Content Include="Views\Games\CreateReview.cshtml" />
+    <Content Include="Views\Games\Publish.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -399,6 +404,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905171509138_addPositiveProp.resx">
       <DependentUpon>201905171509138_addPositiveProp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905181315434_SoftDelete.resx">
+      <DependentUpon>201905181315434_SoftDelete.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

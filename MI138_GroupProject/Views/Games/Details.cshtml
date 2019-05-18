@@ -20,23 +20,44 @@
             <b>Created by</b>
             <p>@Html.DisplayFor(model => model.CreatedBy.Email)</p>
             <b>Reviews</b>
+            @{ 
+                var positive = Model.Reviews.Where(r => r.Positive).ToArray().Count();
+            }
             <button class="btn btn-success" type="button">
-                Possive <span class="badge">4</span>
-            </button>
-            <button class="btn btn-danger" type="button">
-                Negative <span class="badge">4</span>
+                Recommended <span class="badge">@positive</span>
             </button>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <a href="@Url.Action("CreateReview", "Games")" class="btn btn-primary" role="button">Write review</a>
+            <hr />
+            @{
+                var myReview = Model.Reviews.Where(r => r.CreatedBy.Id == ViewBag.UserID).FirstOrDefault();
+                if (myReview == null)
+                {
+                    <br />
+                    <a href="@Url.Action("CreateReview", "Games")" class="btn btn-primary" role="button">Write review</a>
+                }
+                else
+                {
+                    var positive = myReview.Positive ? "success" : "danger";
+                    <div class="panel panel-@positive">
+                        <div class="panel-heading">My review</div>
+                        <div class="panel-body">
+                            @Html.DisplayFor(modelItem => myReview.Content)
+                        </div>
+                        <div class="panel-footer">
+                            @Html.DisplayFor(modelItem => myReview.Created)
+                        </div>
+                    </div>
+                }
+            }
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
             <h4>List of reviews</h4>
-            @foreach (var review in Model.Reviews)
+            @foreach (var review in Model.Reviews.OrderBy(r => r.Created))
             {
                 <div class="panel panel-default">
                     <div class="panel-heading">@Html.DisplayFor(modelItem => review.CreatedBy.Email)</div>

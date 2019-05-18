@@ -19,12 +19,14 @@ namespace MI138_GroupProject.Controllers
         // GET: Games
         public ActionResult Index()
         {
+            List<Game> games = db.Games.Where(g => g.Deleted == false).ToList();
+
             Session["CurrentGame"] = null;
             if (User.IsInRole("Admin"))
             {
-                return View("IndexAdmin", db.Games.ToList());
+                return View("IndexAdmin", games);
             }
-            return View(db.Games.ToList());
+            return View(games);
         }
 
         // GET: Games/Details/5
@@ -32,13 +34,14 @@ namespace MI138_GroupProject.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
-            Game game = db.Games.Include("Reviews.CreatedBy").Where(g => g.ID == id).FirstOrDefault();
+            Game game = db.Games.Include("Reviews.CreatedBy").Where(g => g.ID == id && g.Deleted == false).FirstOrDefault();
             if (game == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.UserID = User.Identity.GetUserId();
             Session["CurrentGame"] = game;
             return View(game);
         }
@@ -74,7 +77,7 @@ namespace MI138_GroupProject.Controllers
                 game.Reviews.Add(review);
                 db.SaveChanges();
             }
-            return RedirectToAction("Details", Session["CurrentGameID"]);
+            return RedirectToAction("Details", new { id = currentGame.ID });
         }
         // POST: Games/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -145,7 +148,36 @@ namespace MI138_GroupProject.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Game game = db.Games.Find(id);
-            db.Games.Remove(game);
+            game.Deleted = true;
+            //db.Games.Remove(game);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Publish(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Game game = db.Games.Find(id);
+            if (game == null)
+            {
+                return HttpNotFound();
+            }
+            return View(game);
+        }
+
+        [HttpPost, ActionName("Publish")]
+        [ValidateAntiForgeryToken]
+        public ActionResult PublishAction(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
+            Game game = db.Games.Find(id);
+            game.Published = true;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
