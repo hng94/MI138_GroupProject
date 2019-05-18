@@ -21,10 +21,10 @@
             <p>@Html.DisplayFor(model => model.CreatedBy.Email)</p>
             <b>Reviews</b>
             @{ 
-                var positive = Model.Reviews.Where(r => r.Positive).ToArray().Count();
+                var recommended = Model.Reviews.Where(r => r.Positive).ToArray().Count();
             }
             <button class="btn btn-success" type="button">
-                Recommended <span class="badge">@positive</span>
+                Recommended <span class="badge">@recommended</span>
             </button>
         </div>
     </div>
@@ -40,7 +40,7 @@
                 }
                 else
                 {
-                    var positive = myReview.Positive ? "success" : "danger";
+                    string positive = myReview.Positive ? "success" : "danger";
                     <div class="panel panel-@positive">
                         <div class="panel-heading">My review</div>
                         <div class="panel-body">
@@ -72,31 +72,3 @@
         </div>
     </div>
 </div>
-
-@section scripts {
-    <script>
-        $(document).ready(function () {
-            $("#submit_new_review").on("click", function (e) {
-                e.preventDefault();
-                var content = $("#new_review").val();
-                var positive = $("input[type='radio'][name='review_opinion']:checked").val() == "positive";
-                var gameID = @Html.DisplayFor(model => model.ID);
-                debugger
-                var reviewVM = {
-                    gameID,
-                    content,
-                    positive
-                }
-                $.ajax({
-                    url: "/api/games/createreview",
-                    data: JSON.stringify(reviewVM),
-                    method: "POST",
-                    contentType: 'application/json; charset=utf-8',
-                    dataType: 'json'
-                }).done(function () {
-                    document.location.reload(true);
-                })
-            })
-        })
-    </script>
-}
