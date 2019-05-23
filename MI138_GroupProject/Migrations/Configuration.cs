@@ -35,15 +35,38 @@ namespace MI138_GroupProject.Migrations
                 roleManager.Create(devRole);
             }
 
+            var admin = new ApplicationUser { UserName = "admin", Email = "admin@mi138.com" };
+
             if (!context.Users.Any(u => u.UserName == "admin"))
             {
-                var store = new UserStore<ApplicationUser>(context);
-                var manager = new ApplicationUserManager(store);
-                var admin = new ApplicationUser { UserName = "admin", Email = "admin@mail.com" };
+                base.Seed(context);
 
-                manager.Create(admin, "P@stWork2893");
-                manager.AddToRole(admin.Id, "Admin");
+                var applicationUserManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
+
+                var result = applicationUserManager.Create(admin, "MI138@project");
+
+                if (!result.Succeeded)
+                    throw new Exception();
+                //var store = new UserStore<ApplicationUser>(context);
+                //var manager = new ApplicationUserManager(store);
+                //var admin = new ApplicationUser { UserName = "admin", Email = "admin@mail.com" };
+
+                //manager.Create(admin, "P@stWork2893");
+                //manager.AddToRole(admin.Id, "Admin");
             }
+
+            if (!context.Games.Any(g => g.Name == "Game Sample"))
+            {
+                var game1 = new Game();
+                game1.Created = DateTime.Now;
+                game1.CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "admin");
+                game1.Name = "Game Sample";
+                game1.ScreenshotUrl = "https://www.foxsportsasia.com/uploads/2019/01/images-54.jpeg";
+                game1.Tags = "MOBA";
+                context.Games.Add(game1);
+            }
+
+            context.SaveChanges();
         }
     }
 }

@@ -242,6 +242,14 @@
     <Compile Include="Migrations\201905181315434_SoftDelete.Designer.cs">
       <DependentUpon>201905181315434_SoftDelete.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905221543398_SeedAccount.cs" />
+    <Compile Include="Migrations\201905221543398_SeedAccount.Designer.cs">
+      <DependentUpon>201905221543398_SeedAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905221606361_SeedGame.cs" />
+    <Compile Include="Migrations\201905221606361_SeedGame.Designer.cs">
+      <DependentUpon>201905221606361_SeedGame.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -405,6 +413,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905181315434_SoftDelete.resx">
       <DependentUpon>201905181315434_SoftDelete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905221543398_SeedAccount.resx">
+      <DependentUpon>201905221543398_SeedAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905221606361_SeedGame.resx">
+      <DependentUpon>201905221606361_SeedGame.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
