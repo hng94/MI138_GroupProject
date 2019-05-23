@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+
+}
+@model List<GameCompany.Models.GameCompany>
+
+
+
+<h1>@ViewData["Message"]</h1>
+
+<br>
+<H3 class="text-center">Games</H3>
+<br>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Game</th>
+            <th scope="col">Created</th>
+            <th scope="col">Developer</th>
+            <th scope="col">Published</th>
+            <th scope="col">Tags</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var element in Model)
+        {
+            <tr>
+                <td>
+                    <p>@Html.DisplayFor(m => element.Name)</p>
+
+                </td>
+                <td>
+                    <p>@Html.DisplayFor(m => element.Created)</p>
+
+                </td>
+                <td>
+                    <p>@Html.DisplayFor(m => element.Developer)</p>
+
+                </td>
+                <td>
+                    <p>@Html.DisplayFor(m => element.Published)</p>
+
+                </td>
+                <td>
+                    @foreach (var tag in element.Tag)
+                    {
+                        <p>@Html.DisplayFor(m => tag.Name), </p>
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Send", "Send", new { id = element.ID }) |
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="row">
+    <div class="col-md-3">
+        <h5>Games</h5>
+    </div>
+    <div class="col-md-3">
+        <h5>Reviews</h5>
+    </div>
+    <div class="col-md-3">
+        <h5>Comments</h5>
+    </div>
+    <div class="col-md-3">
+        <h5>Developers</h5>
+    </div>

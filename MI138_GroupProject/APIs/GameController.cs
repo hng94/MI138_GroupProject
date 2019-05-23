@@ -86,6 +86,7 @@ namespace MI138_GroupProject.APIs
             string password = vm.CreatorPassword;
             ApplicationUser user =  UserManager.FindByEmail(email);
             var passwordHasher = new PasswordHasher();
+
             if (user != null && passwordHasher.VerifyHashedPassword(user.PasswordHash, password) == PasswordVerificationResult.Success)
             {
                 Game newGame = new Game();
