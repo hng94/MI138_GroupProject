@@ -70,6 +70,7 @@ namespace MI138_GroupProject.Controllers
                 string userId = User.Identity.GetUserId();
                 Review review = new Review();
                 review.Content = vm.Content;
+                review.Positive = vm.Positive;
                 review.CreatedBy = db.Users.FirstOrDefault(u => u.Id == userId);
                 review.Created = DateTime.Now;
                 db.Reviews.Add(review);

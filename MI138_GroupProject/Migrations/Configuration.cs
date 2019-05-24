@@ -47,12 +47,6 @@ namespace MI138_GroupProject.Migrations
 
                 if (!result.Succeeded)
                     throw new Exception();
-                //var store = new UserStore<ApplicationUser>(context);
-                //var manager = new ApplicationUserManager(store);
-                //var admin = new ApplicationUser { UserName = "admin", Email = "admin@mail.com" };
-
-                //manager.Create(admin, "P@stWork2893");
-                //manager.AddToRole(admin.Id, "Admin");
             }
 
             if (!context.Games.Any(g => g.Name == "Game Sample"))
@@ -62,6 +56,7 @@ namespace MI138_GroupProject.Migrations
                 game1.CreatedBy = context.Users.FirstOrDefault(u => u.UserName == "admin");
                 game1.Name = "Game Sample";
                 game1.ScreenshotUrl = "https://www.foxsportsasia.com/uploads/2019/01/images-54.jpeg";
+                game1.Published = true;
                 game1.Tags = "MOBA";
                 context.Games.Add(game1);
             }
