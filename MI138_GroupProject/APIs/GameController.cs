@@ -8,9 +8,11 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace MI138_GroupProject.APIs
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/games")]
     public class GameController : ApiController
     {
@@ -55,6 +57,13 @@ namespace MI138_GroupProject.APIs
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
+        }
+
+        [Route("getgames")]
+        [HttpGet]
+        public Game[] GetGames()
+        {
+            return db.Games.ToArray();
         }
 
         [Route("createreview")]

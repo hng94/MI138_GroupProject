@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MI138_GroupProject.Tests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameCompany", "WebApplication1\GameCompany.csproj", "{B2AEA9BF-7428-48CD-88D7-C3B7ECF8B4ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameShop", "GameShop\GameShop.csproj", "{3E33EBB4-CC16-445C-93AD-E7D3ED708A6E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminChart", "AdminChart\AdminChart.csproj", "{651870D1-E72B-42A9-BE1D-01569586D5B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{B2AEA9BF-7428-48CD-88D7-C3B7ECF8B4ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2AEA9BF-7428-48CD-88D7-C3B7ECF8B4ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2AEA9BF-7428-48CD-88D7-C3B7ECF8B4ED}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3E33EBB4-CC16-445C-93AD-E7D3ED708A6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3E33EBB4-CC16-445C-93AD-E7D3ED708A6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3E33EBB4-CC16-445C-93AD-E7D3ED708A6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3E33EBB4-CC16-445C-93AD-E7D3ED708A6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{651870D1-E72B-42A9-BE1D-01569586D5B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{651870D1-E72B-42A9-BE1D-01569586D5B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{651870D1-E72B-42A9-BE1D-01569586D5B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{651870D1-E72B-42A9-BE1D-01569586D5B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
